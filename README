@@ -1,0 +1,7 @@
+14i Sorting integers(to ascending order)
+Minimum outputs:
+	Time used to sort the integers
+	Amount of threads/processors used
+Performance competition data set is /fs-1/2/kerola/rio_testdata/uint64-keys.bin  (64 bit  little-endian unsigned integers, 58M values, file size 0.47 GB; read from file server, do not make extra copies and waste space...)
+	In 2011 best time was 1,72 s (Java)
+Java does not support well 64 bit unsigned integers. You may interpret the data set as signed integers instead.
