@@ -43,6 +43,7 @@ public class MergeSorter {
         int i = 0;
         int j = 0;
         
+        // Sort
         for (int k = left; k <= right; k++) {
             
             if (leftArray[i] <= rightArray[j]) {
@@ -61,6 +62,7 @@ public class MergeSorter {
     
     @Override
     public String toString() {
+        
         StringBuilder stringBuilder = new StringBuilder();
         
         stringBuilder.append("[");
