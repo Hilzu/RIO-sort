@@ -69,7 +69,7 @@ public class MergeSorterTest {
     
     @Test
     public void canSort58Mvariables() {
-        int size = 58_000_000;
+        int size = 58000000;
         long[] array = new long[size];
         for (int i = 0; i < size; i++) {
             array[i] = (long) (Math.random() * Long.MAX_VALUE);
@@ -78,7 +78,7 @@ public class MergeSorterTest {
         sorter = new MergeSorter(array);
         long startTime = System.nanoTime();
         sorter.sort();
-        long elapsedTimeInMS = (System.nanoTime() - startTime) / 1_000_000;
+        long elapsedTimeInMS = (System.nanoTime() - startTime) / 1000000;
         System.out.println("Merge: Elapsed time in MS: " + elapsedTimeInMS);
     }
 }
