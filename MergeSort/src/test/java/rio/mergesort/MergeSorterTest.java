@@ -1,6 +1,6 @@
 package rio.mergesort;
 
-import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class MergeSorterTest {
@@ -65,5 +65,20 @@ public class MergeSorterTest {
         sorter.sort();
         
         assertArrayEquals(expected, array);
+    }
+    
+    @Test
+    public void canSort58Mvariables() {
+        int size = 58_000_000;
+        long[] array = new long[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = (long) (Math.random() * Long.MAX_VALUE);
+        }
+        
+        sorter = new MergeSorter(array);
+        long startTime = System.nanoTime();
+        sorter.sort();
+        long elapsedTimeInMS = (System.nanoTime() - startTime) / 1_000_000;
+        System.out.println("Merge: Elapsed time in MS: " + elapsedTimeInMS);
     }
 }
