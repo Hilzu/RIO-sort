@@ -14,16 +14,11 @@ public class QuickSort {
 
     private void quickSort(int leftmostIndex, int rightmostIndex) {
         if (leftmostIndex < rightmostIndex) {
-            int pivotIndex = choosePivotIndex(leftmostIndex, rightmostIndex);
+            int pivotIndex = leftmostIndex + (rightmostIndex - leftmostIndex) / 2;
             pivotIndex = partition(leftmostIndex, rightmostIndex, pivotIndex);
             quickSort(leftmostIndex, pivotIndex);
             quickSort(pivotIndex + 1, rightmostIndex);
         }
-    }
-
-    // left ≤ pivotIndex ≤ right
-    private int choosePivotIndex(int leftmostIndex, int rightmostIndex) {
-        return (rightmostIndex - leftmostIndex) / 2 + leftmostIndex;
     }
 
     private int partition(int leftmostIndex, int rightmostIndex, int pivotIndex) {
