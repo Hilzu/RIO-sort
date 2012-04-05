@@ -80,6 +80,7 @@ public class QuickSortTest {
         sorter.sort();
         long elapsedTimeInMS = (System.nanoTime() - startTime) / 1_000_000;
         System.out.println("Quick: Elapsed time in MS: " + elapsedTimeInMS);
+        sorter = null;
     }
 
 }

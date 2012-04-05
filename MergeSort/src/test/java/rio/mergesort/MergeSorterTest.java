@@ -80,5 +80,6 @@ public class MergeSorterTest {
         sorter.sort();
         long elapsedTimeInMS = (System.nanoTime() - startTime) / 1_000_000;
         System.out.println("Merge: Elapsed time in MS: " + elapsedTimeInMS);
+        sorter = null;
     }
 }
