@@ -1,10 +1,10 @@
-package rio.mergesort;
+package rio.sorter;
 
-public class MergeSorter {
+public class MergeSort {
 
     private long[] array;
     
-    public MergeSorter(long[] array) {
+    public MergeSort(long[] array) {
         this.array = array;
     }
     

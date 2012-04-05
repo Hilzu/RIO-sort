@@ -1,4 +1,4 @@
-package rio.mergesort;
+package rio.sorter;
 
 import static org.junit.Assert.*;
 import org.junit.Test;

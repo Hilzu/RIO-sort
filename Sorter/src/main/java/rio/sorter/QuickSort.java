@@ -1,4 +1,4 @@
-package rio.mergesort;
+package rio.sorter;
 
 public class QuickSort {
 

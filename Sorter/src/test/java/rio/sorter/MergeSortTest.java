@@ -1,11 +1,11 @@
-package rio.mergesort;
+package rio.sorter;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class MergeSorterTest {
+public class MergeSortTest {
     
-    private MergeSorter sorter;
+    private MergeSort sorter;
     
     @Test
     public void sortEmptyArray() {
@@ -13,7 +13,7 @@ public class MergeSorterTest {
         long[] array = {};
         long[] expected = {};
         
-        sorter = new MergeSorter(array);
+        sorter = new MergeSort(array);
         sorter.sort();
         
         assertArrayEquals(expected, array);
@@ -25,7 +25,7 @@ public class MergeSorterTest {
         long[] array = {1L};
         long[] expected = {1L};
         
-        sorter = new MergeSorter(array);
+        sorter = new MergeSort(array);
         sorter.sort();
         
         assertArrayEquals(expected, array);
@@ -37,7 +37,7 @@ public class MergeSorterTest {
         long[] array = {3L, 2L, 1L, 4L};
         long[] expected = {1L, 2L, 3L, 4L};
         
-        sorter = new MergeSorter(array);
+        sorter = new MergeSort(array);
         sorter.sort();
         
         assertArrayEquals(expected, array);
@@ -49,7 +49,7 @@ public class MergeSorterTest {
         long[] array = {0L, -2L, 4L};
         long[] expected = {-2L, 0L, 4L};
         
-        sorter = new MergeSorter(array);
+        sorter = new MergeSort(array);
         sorter.sort();
         
         assertArrayEquals(expected, array);
@@ -61,7 +61,7 @@ public class MergeSorterTest {
         long[] array = {1L, 2L, 3L, 6L, 12L};
         long[] expected = {1L, 2L, 3L, 6L, 12L};
         
-        sorter = new MergeSorter(array);
+        sorter = new MergeSort(array);
         sorter.sort();
         
         assertArrayEquals(expected, array);
@@ -75,7 +75,7 @@ public class MergeSorterTest {
             array[i] = (long) (Math.random() * Long.MAX_VALUE);
         }
         
-        sorter = new MergeSorter(array);
+        sorter = new MergeSort(array);
         long startTime = System.nanoTime();
         sorter.sort();
         long elapsedTimeInMS = (System.nanoTime() - startTime) / 1000000;
