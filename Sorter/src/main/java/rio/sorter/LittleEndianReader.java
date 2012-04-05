@@ -7,14 +7,19 @@ import java.nio.ByteOrder;
 public class LittleEndianReader {
 
     private BufferedInputStream stream;
+    private ByteBuffer buffer;
     private long[] array;
     
     public LittleEndianReader(File file) throws FileNotFoundException {
         
         int longs = (int) file.length() / 8;
         
-        array = new long[longs];
         stream = new BufferedInputStream(new FileInputStream(file));
+        
+        buffer = ByteBuffer.allocate(8);
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
+        
+        array = new long[longs];
     }
     
     public long[] read() {
@@ -49,9 +54,7 @@ public class LittleEndianReader {
     
     private long littleEndianToLong(byte[] bytes, int offset) {
         
-        ByteBuffer buffer = ByteBuffer.allocate(8);
-        buffer.order(ByteOrder.LITTLE_ENDIAN);
-        
+        buffer.position(0);
         buffer.put(bytes, offset, 8);
         buffer.position(0);
         

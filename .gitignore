@@ -2,4 +2,5 @@
 .DS_Store
 
 # Project
+uint64-keys.bin
 target
