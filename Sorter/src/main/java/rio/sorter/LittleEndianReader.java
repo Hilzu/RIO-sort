@@ -1,6 +1,8 @@
 package rio.sorter;
 
 import java.io.*;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
 
 public class LittleEndianReader {
 
@@ -29,9 +31,9 @@ public class LittleEndianReader {
                 int bytesConverted = 0;
                 
                 while (readBytes - bytesConverted >= 8) {
-                    long value = this.littleEndianToLong(bytes, bytesConverted, bytesConverted + 8);
+                    long value = this.littleEndianToLong(bytes, bytesConverted);
                     bytesConverted += 8;
-                    
+
                     array[arrayIndex] = value;
                     arrayIndex++;
                 }
@@ -45,14 +47,14 @@ public class LittleEndianReader {
         return array;
     }
     
-    private long littleEndianToLong(byte[] bytes, int offset, int length) {
+    private long littleEndianToLong(byte[] bytes, int offset) {
         
-        long value = 0;
+        ByteBuffer buffer = ByteBuffer.allocate(8);
+        buffer.order(ByteOrder.LITTLE_ENDIAN);
         
-        for (int i = offset; i < length; i++) {
-            value += (bytes[i] & 0xff) << (8 * i);
-        }
-
-        return value;
+        buffer.put(bytes, offset, 8);
+        buffer.position(0);
+        
+        return buffer.getLong();
     }
 }
