@@ -1,11 +1,11 @@
-package rio.mergesort;
+package rio.sorter;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class MergeSorterTest {
+public class MergeSortTest {
     
-    private MergeSorter sorter;
+    private MergeSort sorter;
     
     @Test
     public void sortEmptyArray() {
@@ -13,7 +13,7 @@ public class MergeSorterTest {
         long[] array = {};
         long[] expected = {};
         
-        sorter = new MergeSorter(array);
+        sorter = new MergeSort(array);
         sorter.sort();
         
         assertArrayEquals(expected, array);
@@ -25,7 +25,7 @@ public class MergeSorterTest {
         long[] array = {1L};
         long[] expected = {1L};
         
-        sorter = new MergeSorter(array);
+        sorter = new MergeSort(array);
         sorter.sort();
         
         assertArrayEquals(expected, array);
@@ -37,7 +37,7 @@ public class MergeSorterTest {
         long[] array = {3L, 2L, 1L, 4L};
         long[] expected = {1L, 2L, 3L, 4L};
         
-        sorter = new MergeSorter(array);
+        sorter = new MergeSort(array);
         sorter.sort();
         
         assertArrayEquals(expected, array);
@@ -49,7 +49,7 @@ public class MergeSorterTest {
         long[] array = {0L, -2L, 4L};
         long[] expected = {-2L, 0L, 4L};
         
-        sorter = new MergeSorter(array);
+        sorter = new MergeSort(array);
         sorter.sort();
         
         assertArrayEquals(expected, array);
@@ -61,7 +61,35 @@ public class MergeSorterTest {
         long[] array = {1L, 2L, 3L, 6L, 12L};
         long[] expected = {1L, 2L, 3L, 6L, 12L};
         
-        sorter = new MergeSorter(array);
+        sorter = new MergeSort(array);
+        sorter.sort();
+        
+        assertArrayEquals(expected, array);
+    }
+    
+    @Test
+    public void sort1MValuesInRandomOrder() {
+        
+        int size = 1000000;
+        
+        long[] array = new long[size];
+        long[] expected = new long[size];
+        
+        for (int i = 0; i < size; i++) {
+            array[i] = i + 1;
+            expected[i] = i + 1;
+        }
+        
+        // Shuffle
+        for (int i = 0; i < size; i++) {
+            int randomIndex = (int) (Math.random() * size);
+            
+            long swapWith = array[i];
+            array[i] = array[randomIndex];
+            array[randomIndex] = swapWith;
+        }
+        
+        sorter = new MergeSort(array);
         sorter.sort();
         
         assertArrayEquals(expected, array);
@@ -69,16 +97,16 @@ public class MergeSorterTest {
     
     @Test
     public void canSort58Mvariables() {
-        int size = 58_000_000;
+        int size = 58000000;
         long[] array = new long[size];
         for (int i = 0; i < size; i++) {
             array[i] = (long) (Math.random() * Long.MAX_VALUE);
         }
         
-        sorter = new MergeSorter(array);
+        sorter = new MergeSort(array);
         long startTime = System.nanoTime();
         sorter.sort();
-        long elapsedTimeInMS = (System.nanoTime() - startTime) / 1_000_000;
+        long elapsedTimeInMS = (System.nanoTime() - startTime) / 1000000;
         System.out.println("Merge: Elapsed time in MS: " + elapsedTimeInMS);
         sorter = null;
     }
