@@ -1,16 +1,16 @@
 package rio.sorter;
 
-public class QuickSort {
+public class ConcurrentQuickSort {
 
     private final long[] array;
     private final int treshold;
 
-    public QuickSort(long[] array, int treshold) {
+    public ConcurrentQuickSort(long[] array, int treshold) {
         this.array = array;
         this.treshold = treshold;
     }
 
-    public QuickSort(long[] array) {
+    public ConcurrentQuickSort(long[] array) {
         this(array, 50);  // 50 seems best when tested with testSpeedWithDifferentTresholds()
     }
 

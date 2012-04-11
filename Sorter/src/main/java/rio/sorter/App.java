@@ -34,7 +34,7 @@ public class App {
         long[] times = new long[5];
         for (int i = 0; i < 5; i++) {
             long[] sortArray = Arrays.copyOf(randomArray, randomArray.length);
-            QuickSort sorter = new QuickSort(sortArray, treshold);
+            ConcurrentQuickSort sorter = new ConcurrentQuickSort(sortArray, treshold);
             long startTime = System.nanoTime();
             sorter.sort();
             long elapsedTimeInMS = (System.nanoTime() - startTime) / 1000000;
