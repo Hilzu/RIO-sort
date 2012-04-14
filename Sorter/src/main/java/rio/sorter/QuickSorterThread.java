@@ -3,14 +3,14 @@ package rio.sorter;
 public class QuickSorterThread implements Runnable {
 
     private final long[] array;
-    private final int treshold;
+    private final int threshold;
     private final WorkQueue workQueue;
     private int leftmostIndex;
     private int rightmostIndex;
 
-    public QuickSorterThread(long[] array, int treshold, WorkQueue workQueue) {
+    public QuickSorterThread(long[] array, int threshold, WorkQueue workQueue) {
         this.array = array;
-        this.treshold = treshold;
+        this.threshold = threshold;
         this.workQueue = workQueue;
     }
 
@@ -33,7 +33,7 @@ public class QuickSorterThread implements Runnable {
             leftmostIndex = job.getLeftmostIndex();
             rightmostIndex = job.getRightmostIndex();
             
-            if (rightmostIndex - leftmostIndex < treshold) {
+            if (rightmostIndex - leftmostIndex < threshold) {
                 continue;
             }
             if (leftmostIndex < rightmostIndex) {

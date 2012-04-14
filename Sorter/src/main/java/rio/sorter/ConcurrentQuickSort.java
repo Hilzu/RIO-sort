@@ -3,12 +3,12 @@ package rio.sorter;
 public class ConcurrentQuickSort {
 
     private final long[] array;
-    private final int treshold;
+    private final int threshold;
     private final WorkQueue workQueue;
 
-    public ConcurrentQuickSort(long[] array, int treshold) {
+    public ConcurrentQuickSort(long[] array, int threshold) {
         this.array = array;
-        this.treshold = treshold;
+        this.threshold = threshold;
         workQueue = new WorkQueue();
     }
 
