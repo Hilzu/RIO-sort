@@ -13,7 +13,7 @@ public class ConcurrentQuickSort {
     }
 
     public ConcurrentQuickSort(long[] array) {
-        this(array, 50);  // 50 seems best when tested with testSpeedWithDifferentTresholds()
+        this(array, 50);  // 50 seems best when tested with testSpeedWithDifferentThresholds()
     }
 
     public void sort() {
