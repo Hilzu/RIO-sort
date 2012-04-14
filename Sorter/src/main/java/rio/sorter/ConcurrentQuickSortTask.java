@@ -19,8 +19,8 @@ public class ConcurrentQuickSortTask implements Runnable {
     @Override
     public void run() {
         
-        // Insertion sort
-        if (to - from < 50) {
+        // Insertion sort after threshold of 700 values
+        if (to - from < 700) {
             insertionSort(from, to);
             sorter.taskDone();
             return;

@@ -1,11 +1,10 @@
 package rio.sorter;
 
-import java.io.FileNotFoundException;
 import java.util.Arrays;
 
 public class App {
 
-    public static void main(String[] args) throws FileNotFoundException {
+    public static void main(String[] args) {
         
         int size = 1000;
         
