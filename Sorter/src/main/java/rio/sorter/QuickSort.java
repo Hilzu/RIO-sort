@@ -3,24 +3,24 @@ package rio.sorter;
 public class QuickSort {
 
     private final long[] array;
-    private final int treshold;
+    private final int threshold;
 
-    public QuickSort(long[] array, int treshold) {
+    public QuickSort(long[] array, int threshold) {
         this.array = array;
-        this.treshold = treshold;
+        this.threshold = threshold;
     }
 
     public QuickSort(long[] array) {
-        this(array, 50);  // 50 seems best when tested with testSpeedWithDifferentTresholds()
+        this(array, 50);  // 50 seems best when tested with testSpeedWithDifferentThresholds()
     }
 
     public void sort() {
         quickSort(0, array.length - 1);
-        insertionSort();
     }
 
     private void quickSort(int leftmostIndex, int rightmostIndex) {
-        if (rightmostIndex - leftmostIndex < treshold) {
+        if (rightmostIndex - leftmostIndex < threshold) {
+            insertionSort(leftmostIndex, rightmostIndex);
             return;
         }
         if (leftmostIndex < rightmostIndex) {
@@ -52,8 +52,8 @@ public class QuickSort {
         array[index2] = temp;
     }
     
-    private void insertionSort() {
-        for (int i = 0; i < array.length; i++) {
+    private void insertionSort(int from, int to) {
+        for (int i = from; i <= to; i++) {
             long value = array[i];
             int j = i - 1;
             while (j >= 0 && array[j] > value) {
