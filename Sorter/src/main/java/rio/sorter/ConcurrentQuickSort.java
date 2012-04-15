@@ -44,7 +44,7 @@ public class ConcurrentQuickSort {
         
         taskCount--;
         
-        if (taskCount <= 0) {
+        if (taskCount == 0) {
             notify();
         }
     }

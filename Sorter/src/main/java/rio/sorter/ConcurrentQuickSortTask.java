@@ -26,8 +26,7 @@ public class ConcurrentQuickSortTask implements Runnable {
             return;
         }
         
-        if (from < to) {
-            
+        if (from < to) {  
             int pivotIndex = from + (to - from) / 2;
             pivotIndex = partition(from, to, pivotIndex);
             
@@ -65,7 +64,6 @@ public class ConcurrentQuickSortTask implements Runnable {
     private void insertionSort(int from, int to) {
             
         for (int i = from; i <= to; i++) {
-            
             long value = array[i];
             int j = i - 1;
             
