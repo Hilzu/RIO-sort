@@ -67,47 +67,47 @@ public class ConcurrentQuickSortTest {
         assertArrayEquals(expected, array);
     }
     
-//    @Test
-//    public void sort1MValuesInRandomOrder() {
-//        
-//        int size = 1000000;
-//        
-//        long[] array = new long[size];
-//        long[] expected = new long[size];
-//        
-//        for (int i = 0; i < size; i++) {
-//            array[i] = i + 1;
-//            expected[i] = i + 1;
-//        }
-//        
-//        // Shuffle
-//        for (int i = 0; i < size; i++) {
-//            int randomIndex = (int) (Math.random() * size);
-//            
-//            long swapWith = array[i];
-//            array[i] = array[randomIndex];
-//            array[randomIndex] = swapWith;
-//        }
-//        
-//        sorter = new ConcurrentQuickSort(array);
-//        sorter.sort();
-//        
-//        assertArrayEquals(expected, array);
-//    }
-//    
-//    @Test
-//    public void canSort58Mvariables() {
-//        int size = 58000000;
-//        long[] array = new long[size];
-//        for (int i = 0; i < size; i++) {
-//            array[i] = (long) (Math.random() * Long.MAX_VALUE);
-//        }
-//        
-//        sorter = new ConcurrentQuickSort(array);
-//        long startTime = System.nanoTime();
-//        sorter.sort();
-//        long elapsedTimeInMS = (System.nanoTime() - startTime) / 1000000;
-//        System.out.println("Quick: Elapsed time in MS: " + elapsedTimeInMS);
-//        sorter = null;
-//    }
+    @Test
+    public void sort1MValuesInRandomOrder() {
+        
+        int size = 1000000;
+        
+        long[] array = new long[size];
+        long[] expected = new long[size];
+        
+        for (int i = 0; i < size; i++) {
+            array[i] = i + 1;
+            expected[i] = i + 1;
+        }
+        
+        // Shuffle
+        for (int i = 0; i < size; i++) {
+            int randomIndex = (int) (Math.random() * size);
+            
+            long swapWith = array[i];
+            array[i] = array[randomIndex];
+            array[randomIndex] = swapWith;
+        }
+        
+        sorter = new ConcurrentQuickSort(array);
+        sorter.sort();
+        
+        assertArrayEquals(expected, array);
+    }
+    
+    @Test
+    public void canSort58Mvariables() {
+        int size = 58000000;
+        long[] array = new long[size];
+        for (int i = 0; i < size; i++) {
+            array[i] = (long) (Math.random() * Long.MAX_VALUE);
+        }
+        
+        sorter = new ConcurrentQuickSort(array);
+        long startTime = System.nanoTime();
+        sorter.sort();
+        long elapsedTimeInMS = (System.nanoTime() - startTime) / 1000000;
+        System.out.println("Quick: Elapsed time in MS: " + elapsedTimeInMS);
+        sorter = null;
+    }
 }
