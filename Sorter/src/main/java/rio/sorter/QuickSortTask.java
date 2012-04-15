@@ -5,39 +5,37 @@ import jsr166y.RecursiveAction;
 public class QuickSortTask extends RecursiveAction {
 
     private final long[] array;
-    private int leftmostIndex;
-    private int rightmostIndex;
-    private final int threshold;
+    private final int leftmostIndex;
+    private final int rightmostIndex;
 
-    public QuickSortTask(long[] array, int leftmostIndex, int rightmostIndex, int threshold) {
+    public QuickSortTask(long[] array, int leftmostIndex, int rightmostIndex) {
         this.array = array;
         this.leftmostIndex = leftmostIndex;
         this.rightmostIndex = rightmostIndex;
-        this.threshold = threshold;
     }
 
-    private static int partition(long[] array, int leftmostIndex, int rightmostIndex, int pivotIndex) {
+    private int partition(int leftmostIndex, int rightmostIndex, int pivotIndex) {
         long pivotValue = array[pivotIndex];
-        swapElements(array, pivotIndex, rightmostIndex);
+        swapElements(pivotIndex, rightmostIndex);
         int newPivotIndex = leftmostIndex;
         for (int i = leftmostIndex; i < rightmostIndex; i++) {
             if (array[i] < pivotValue) {
-                swapElements(array, i, newPivotIndex);
+                swapElements(i, newPivotIndex);
                 newPivotIndex++;
             }
         }
-        swapElements(array, newPivotIndex, rightmostIndex);
+        swapElements(newPivotIndex, rightmostIndex);
 
         return newPivotIndex;
     }
 
-    private static void swapElements(long[] array, int index1, int index2) {
+    private void swapElements(int index1, int index2) {
         long temp = array[index1];
         array[index1] = array[index2];
         array[index2] = temp;
     }
     
-    private static void insertionSort(long[] array, int start, int end) {
+    private void insertionSort(int start, int end) {
         for (int i = start; i <= end; i++) {
             long value = array[i];
             int j = i - 1;
@@ -51,16 +49,14 @@ public class QuickSortTask extends RecursiveAction {
 
     @Override
     protected void compute() {
-        if (leftmostIndex + (rightmostIndex-leftmostIndex)/2 < threshold) {
-            insertionSort(array, leftmostIndex, rightmostIndex);
+        if (leftmostIndex + (rightmostIndex-leftmostIndex)/2 < 10) {
+            insertionSort(leftmostIndex, rightmostIndex);
         }
         if (leftmostIndex < rightmostIndex) {
             int pivotIndex = leftmostIndex + (rightmostIndex - leftmostIndex) / 2;
-            pivotIndex = partition(array, leftmostIndex, rightmostIndex, pivotIndex);
-            invokeAll(new QuickSortTask(array, leftmostIndex, pivotIndex, threshold),
-                    new QuickSortTask(array, pivotIndex + 1, rightmostIndex, threshold));
-            
+            pivotIndex = partition(leftmostIndex, rightmostIndex, pivotIndex);
+            invokeAll(new QuickSortTask(array, leftmostIndex, pivotIndex),
+                    new QuickSortTask(array, pivotIndex + 1, rightmostIndex));
         }
-
     }
 }

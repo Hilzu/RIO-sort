@@ -19,6 +19,6 @@ public class ConcurrentQuickSort {
     }
 
     public void sort() {
-        pool.invoke(new QuickSortTask(array, 0, array.length - 1, threshold));
+        pool.invoke(new QuickSortTask(array, 0, array.length - 1));
     }
 }
