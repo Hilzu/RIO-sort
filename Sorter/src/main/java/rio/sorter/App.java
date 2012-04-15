@@ -41,6 +41,6 @@ public class App {
         sorter.sort();
         long sortStopTime = System.currentTimeMillis();
         
-        System.out.println("Sorted longs in: " + (sortStopTime - sortStartTime + "ms."));
+        System.out.println("Sorted longs in " + (sortStopTime - sortStartTime + "ms."));
     }
 }
