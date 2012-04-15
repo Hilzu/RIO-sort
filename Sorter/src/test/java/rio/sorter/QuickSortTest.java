@@ -96,10 +96,10 @@ public class QuickSortTest {
         sorter = new QuickSort(array);
         
         long startTime = System.currentTimeMillis();
-        
         sorter.sort();
+        long stopTime = System.currentTimeMillis();
         
-        System.out.println("Elapsed time with 1M values: " + (System.currentTimeMillis() - startTime) + "ms");
+        System.out.println("Elapsed time with 1M values: " + (stopTime - startTime) + "ms");
         
         assertArrayEquals(expected, array);
     }
@@ -129,10 +129,10 @@ public class QuickSortTest {
         sorter = new QuickSort(array);
         
         long startTime = System.currentTimeMillis();
-        
         sorter.sort();
+        long stopTime = System.currentTimeMillis();
         
-        System.out.println("Elapsed time with 5M values: " + (System.currentTimeMillis() - startTime) + "ms");
+        System.out.println("Elapsed time with 5M values: " + (stopTime - startTime) + "ms");
         
         assertArrayEquals(expected, array);
     }
