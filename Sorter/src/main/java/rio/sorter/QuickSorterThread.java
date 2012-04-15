@@ -16,26 +16,28 @@ public class QuickSorterThread implements Runnable {
 
     @Override
     public void run() {
-        while (true) {            
-            Job job = null;
-            while (job == null) {
-                job = workQueue.getNextJob();
-                if (job == null) {
-                    try {
+        while (true) {
+            if (workQueue.isDone()) {
+                return;
+            }
+            Job job = workQueue.getNextJob();
+            if (job == null) {
+                workQueue.addWaitingThread();
+                try {
+                    synchronized (workQueue.workAvailable) {
                         workQueue.workAvailable.wait();
-                    } catch (InterruptedException ex) {
-                        System.out.println(ex);
-                        return;
                     }
+                    workQueue.removeWaitingThread();
+                    continue;
+                } catch (InterruptedException ex) {
+                    System.out.println(ex);
+                    return;
                 }
             }
-            
+
             leftmostIndex = job.getLeftmostIndex();
             rightmostIndex = job.getRightmostIndex();
-            
-            if (rightmostIndex - leftmostIndex < threshold) {
-                continue;
-            }
+
             if (leftmostIndex < rightmostIndex) {
                 int pivotIndex = leftmostIndex + (rightmostIndex - leftmostIndex) / 2;
                 pivotIndex = partition(leftmostIndex, rightmostIndex, pivotIndex);
