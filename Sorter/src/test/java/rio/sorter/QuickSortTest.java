@@ -1,10 +1,14 @@
 package rio.sorter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
 import static org.junit.Assert.assertArrayEquals;
 import org.junit.Test;
 
 public class QuickSortTest {
     
+    private String filename = "/home/fs/kerola/rio_testdata/uint64-keys.bin";
     private QuickSort sorter;
     
     @Test
@@ -134,19 +138,23 @@ public class QuickSortTest {
     }
     
     @Test
-    public void canSort58Mvariables() {
+    public void sortTestData() throws FileNotFoundException {
         
-        int size = 58000000;
-        long[] array = new long[size];
-        for (int i = 0; i < size; i++) {
-            array[i] = (long) (Math.random() * Long.MAX_VALUE);
-        }
+        File file = new File(filename);
+        LittleEndianReader reader = new LittleEndianReader(file);
+        
+        long[] array = reader.read();
+        long[] expected = Arrays.copyOf(array, array.length);
+        Arrays.sort(expected);
         
         sorter = new QuickSort(array);
-        long startTime = System.nanoTime();
+        
+        long startTime = System.currentTimeMillis();
+        
         sorter.sort();
-        long elapsedTimeInMS = (System.nanoTime() - startTime) / 1000000;
-        System.out.println("Quick: Elapsed time in MS: " + elapsedTimeInMS);
-        sorter = null;
+        
+        System.out.println("Elapsed time with test data: " + (System.currentTimeMillis() - startTime) + "ms");
+        
+        assertArrayEquals(expected, array);
     }
 }

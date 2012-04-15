@@ -1,10 +1,14 @@
 package rio.sorter;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Arrays;
 import static org.junit.Assert.assertArrayEquals;
 import org.junit.Test;
 
 public class ConcurrentQuickSortTest {
     
+    private String filename = "/home/fs/kerola/rio_testdata/uint64-keys.bin";
     private ConcurrentQuickSort sorter;
     
     @Test
@@ -92,10 +96,10 @@ public class ConcurrentQuickSortTest {
         sorter = new ConcurrentQuickSort(array);
         
         long startTime = System.currentTimeMillis();
-        
         sorter.sort();
+        long stopTime = System.currentTimeMillis();
         
-        System.out.println("Elapsed time with 1M values: " + (System.currentTimeMillis() - startTime) + "ms");
+        System.out.println("Elapsed time with 1M values: " + (stopTime - startTime) + "ms");
         
         assertArrayEquals(expected, array);
     }
@@ -125,28 +129,32 @@ public class ConcurrentQuickSortTest {
         sorter = new ConcurrentQuickSort(array);
         
         long startTime = System.currentTimeMillis();
-        
         sorter.sort();
+        long stopTime = System.currentTimeMillis();
         
-        System.out.println("Elapsed time with 5M values: " + (System.currentTimeMillis() - startTime) + "ms");
+        System.out.println("Elapsed time with 5M values: " + (stopTime - startTime) + "ms");
         
         assertArrayEquals(expected, array);
     }
     
     @Test
-    public void canSort58Mvariables() {
+    public void sortTestData() throws FileNotFoundException {
         
-        int size = 58000000;
-        long[] array = new long[size];
-        for (int i = 0; i < size; i++) {
-            array[i] = (long) (Math.random() * Long.MAX_VALUE);
-        }
+        File file = new File(filename);
+        LittleEndianReader reader = new LittleEndianReader(file);
+        
+        long[] array = reader.read();
+        long[] expected = Arrays.copyOf(array, array.length);
+        Arrays.sort(expected);
         
         sorter = new ConcurrentQuickSort(array);
-        long startTime = System.nanoTime();
+        
+        long startTime = System.currentTimeMillis();
         sorter.sort();
-        long elapsedTimeInMS = (System.nanoTime() - startTime) / 1000000;
-        System.out.println("Quick: Elapsed time in MS: " + elapsedTimeInMS);
-        sorter = null;
+        long stopTime = System.currentTimeMillis();
+        
+        System.out.println("Elapsed time with test data: " + (stopTime - startTime) + "ms");
+        
+        assertArrayEquals(expected, array);
     }
 }
