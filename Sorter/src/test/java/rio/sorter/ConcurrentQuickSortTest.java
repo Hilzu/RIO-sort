@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class ConcurrentQuickSortTest {
     
-    private String filename = "/home/fs/kerola/rio_testdata/uint64-keys.bin";
+    private String path = "/home/fs/kerola/rio_testdata/uint64-keys.bin";
     private ConcurrentQuickSort sorter;
     
     @Test
@@ -140,7 +140,7 @@ public class ConcurrentQuickSortTest {
     @Test
     public void sortTestData() throws FileNotFoundException {
         
-        File file = new File(filename);
+        File file = new File(path);
         LittleEndianReader reader = new LittleEndianReader(file);
         
         long[] array = reader.read();
