@@ -15,7 +15,7 @@ public class App {
         long[] randomArray = genRandomLongArray();
 
 
-        for (int threshold = 0; threshold < 100; threshold += 10) {
+        for (int threshold = 0; threshold < 1000; threshold += 100) {
             testThreshold(randomArray, threshold);
         }
 

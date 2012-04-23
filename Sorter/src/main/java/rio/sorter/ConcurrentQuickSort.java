@@ -1,6 +1,6 @@
 package rio.sorter;
 
-import jsr166y.ForkJoinPool;
+import java.util.concurrent.ForkJoinPool;
 
 public class ConcurrentQuickSort {
 
@@ -19,6 +19,6 @@ public class ConcurrentQuickSort {
     }
 
     public void sort() {
-        pool.invoke(new QuickSortTask(array, 0, array.length - 1));
+        pool.invoke(new QuickSortTask(array, 0, array.length - 1, threshold));
     }
 }

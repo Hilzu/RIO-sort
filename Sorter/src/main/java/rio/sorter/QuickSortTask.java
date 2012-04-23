@@ -1,17 +1,19 @@
 package rio.sorter;
 
-import jsr166y.RecursiveAction;
+import java.util.concurrent.RecursiveAction;
 
 public class QuickSortTask extends RecursiveAction {
 
     private final long[] array;
     private final int leftmostIndex;
     private final int rightmostIndex;
+    private final int treshold;
 
-    public QuickSortTask(long[] array, int leftmostIndex, int rightmostIndex) {
+    public QuickSortTask(long[] array, int leftmostIndex, int rightmostIndex, int treshold) {
         this.array = array;
         this.leftmostIndex = leftmostIndex;
         this.rightmostIndex = rightmostIndex;
+        this.treshold = treshold;
     }
 
     private int partition(int leftmostIndex, int rightmostIndex, int pivotIndex) {
@@ -49,14 +51,15 @@ public class QuickSortTask extends RecursiveAction {
 
     @Override
     protected void compute() {
-        if (leftmostIndex + (rightmostIndex-leftmostIndex)/2 < 10) {
+        if (leftmostIndex + (rightmostIndex-leftmostIndex)/2 < treshold) {
             insertionSort(leftmostIndex, rightmostIndex);
         }
         if (leftmostIndex < rightmostIndex) {
             int pivotIndex = leftmostIndex + (rightmostIndex - leftmostIndex) / 2;
             pivotIndex = partition(leftmostIndex, rightmostIndex, pivotIndex);
-            invokeAll(new QuickSortTask(array, leftmostIndex, pivotIndex),
-                    new QuickSortTask(array, pivotIndex + 1, rightmostIndex));
+            invokeAll(new QuickSortTask(array, leftmostIndex, pivotIndex, treshold),
+                    new QuickSortTask(array, pivotIndex + 1, rightmostIndex, treshold));
+            
         }
     }
 }
