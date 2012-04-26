@@ -139,24 +139,24 @@ public class ConcurrentQuickSortTest {
         assertArrayEquals(expected, array);
     }
 
-    @Test
-    public void sortTestData() throws FileNotFoundException {
-
-        File file = new File(path);
-        LittleEndianReader reader = new LittleEndianReader(file);
-
-        long[] array = reader.read();
-        long[] expected = Arrays.copyOf(array, array.length);
-        Arrays.sort(expected);
-
-        sorter = new ConcurrentQuickSort(array);
-
-        long startTime = System.currentTimeMillis();
-        sorter.sort();
-        long stopTime = System.currentTimeMillis();
-
-        System.out.println("Elapsed time with test data: " + (stopTime - startTime) + "ms");
-
-        assertArrayEquals(expected, array);
-    }
+//    @Test
+//    public void sortTestData() throws FileNotFoundException {
+//
+//        File file = new File(path);
+//        LittleEndianReader reader = new LittleEndianReader(file);
+//
+//        long[] array = reader.read();
+//        long[] expected = Arrays.copyOf(array, array.length);
+//        Arrays.sort(expected);
+//
+//        sorter = new ConcurrentQuickSort(array);
+//
+//        long startTime = System.currentTimeMillis();
+//        sorter.sort();
+//        long stopTime = System.currentTimeMillis();
+//
+//        System.out.println("Elapsed time with test data: " + (stopTime - startTime) + "ms");
+//
+//        assertArrayEquals(expected, array);
+//    }
 }

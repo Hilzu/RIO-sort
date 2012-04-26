@@ -7,13 +7,15 @@ public class QuickSortTask implements Runnable {
     private final long[] array;
     private final int leftmostIndex;
     private final int rightmostIndex;
-    private final int depth;
+    private final int currentDepth;
+    private final int maxDepth;
 
-    public QuickSortTask(long[] array, int leftmostIndex, int rightmostIndex, int depth) {
+    public QuickSortTask(long[] array, int leftmostIndex, int rightmostIndex, int currentDepth, int maxDepth) {
         this.array = array;
         this.leftmostIndex = leftmostIndex;
         this.rightmostIndex = rightmostIndex;
-        this.depth = depth;
+        this.currentDepth = currentDepth;
+        this.maxDepth = maxDepth;
     }
 
     private int partition(int leftmostIndex, int rightmostIndex, int pivotIndex) {
@@ -39,8 +41,8 @@ public class QuickSortTask implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(depth);
-        if (depth > Math.sqrt(Runtime.getRuntime().availableProcessors())) {
+        System.out.println(currentDepth);
+        if (currentDepth > maxDepth) {
             Arrays.sort(array, leftmostIndex, rightmostIndex + 1);
             //insertionSort(leftmostIndex, rightmostIndex);
             return;
@@ -70,8 +72,8 @@ public class QuickSortTask implements Runnable {
 
             pivotIndex = partition(leftmostIndex, rightmostIndex, pivotIndex);
             
-            Thread left = new Thread(new QuickSortTask(array, leftmostIndex, pivotIndex, depth + 1));
-            Thread right = new Thread(new QuickSortTask(array, pivotIndex + 1, rightmostIndex, depth + 1));
+            Thread left = new Thread(new QuickSortTask(array, leftmostIndex, pivotIndex, currentDepth + 1, maxDepth));
+            Thread right = new Thread(new QuickSortTask(array, pivotIndex + 1, rightmostIndex, currentDepth + 1, maxDepth));
             
             left.start();
             right.start();
