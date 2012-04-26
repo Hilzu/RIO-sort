@@ -1,24 +1,20 @@
 package rio.sorter;
 
-import java.util.concurrent.ForkJoinPool;
-
 public class ConcurrentQuickSort {
 
     private final long[] array;
-    private final ForkJoinPool pool;
-    public final int threshold;
-
-    public ConcurrentQuickSort(long[] array, int threshold) {
-        this.threshold = threshold;
-        this.array = array;
-        pool = new ForkJoinPool();
-    }
 
     public ConcurrentQuickSort(long[] array) {
-        this(array, 30);  // 50 seems best when tested with testSpeedWithDifferentThresholds()
+        this.array = array;
     }
 
     public void sort() {
-        pool.invoke(new QuickSortTask(array, 0, array.length - 1, threshold));
+        Thread sort = new Thread(new QuickSortTask(array, 0, array.length - 1, 1));
+        sort.start();
+        try {
+            sort.join();
+        } catch (InterruptedException ex) {
+            System.out.println(ex);
+        }
     }
 }

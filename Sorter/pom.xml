@@ -22,20 +22,6 @@
             <version>4.10</version>
             <scope>test</scope>
         </dependency>
-        <!--
-        <dependency>
-            <groupId>backport</groupId>
-            <artifactId>jsr166y</artifactId>
-            <version>1.0</version>
-        </dependency>
-        -->
-        <dependency>
-            <groupId>jsr166</groupId>
-            <artifactId>concurrent</artifactId>
-            <version>1.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/jsr166.jar</systemPath>
-        </dependency>
     </dependencies>
   
     <build>
