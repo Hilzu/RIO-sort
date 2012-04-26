@@ -4,3 +4,7 @@
 # Project
 uint64-keys.bin
 target
+
+# vim
+*.swp
+*~
