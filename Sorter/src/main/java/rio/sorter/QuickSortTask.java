@@ -41,7 +41,6 @@ public class QuickSortTask implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(currentDepth);
         if (currentDepth > maxDepth) {
             Arrays.sort(array, leftmostIndex, rightmostIndex + 1);
             //insertionSort(leftmostIndex, rightmostIndex);
