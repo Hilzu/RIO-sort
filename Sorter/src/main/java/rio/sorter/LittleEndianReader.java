@@ -47,6 +47,7 @@ public class LittleEndianReader {
             stream.close();
         } catch (IOException exception) {
             System.out.println("Ohoi! Captain overboard!");
+            exception.printStackTrace();
         }
         
         return array;

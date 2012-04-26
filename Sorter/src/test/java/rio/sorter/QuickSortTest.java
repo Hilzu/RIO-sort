@@ -1,10 +1,14 @@
 //package rio.sorter;
 //
-//import static org.junit.Assert.*;
+//import java.io.File;
+//import java.io.FileNotFoundException;
+//import java.util.Arrays;
+//import static org.junit.Assert.assertArrayEquals;
 //import org.junit.Test;
 //
 //public class QuickSortTest {
 //    
+//    private String path = "/home/fs/kerola/rio_testdata/uint64-keys.bin";
 //    private QuickSort sorter;
 //    
 //    @Test
@@ -90,24 +94,67 @@
 //        }
 //        
 //        sorter = new QuickSort(array);
+//        
+//        long startTime = System.currentTimeMillis();
 //        sorter.sort();
+//        long stopTime = System.currentTimeMillis();
+//        
+//        System.out.println("Elapsed time with 1M values: " + (stopTime - startTime) + "ms");
 //        
 //        assertArrayEquals(expected, array);
 //    }
 //    
 //    @Test
-//    public void canSort58Mvariables() {
-//        int size = 58000000;
+//    public void sort5MValuesInRandomOrder() {
+//        
+//        int size = 5000000;
+//        
 //        long[] array = new long[size];
+//        long[] expected = new long[size];
+//        
 //        for (int i = 0; i < size; i++) {
-//            array[i] = (long) (Math.random() * Long.MAX_VALUE);
+//            array[i] = i + 1;
+//            expected[i] = i + 1;
+//        }
+//        
+//        // Shuffle
+//        for (int i = 0; i < size; i++) {
+//            int randomIndex = (int) (Math.random() * size);
+//            
+//            long swapWith = array[i];
+//            array[i] = array[randomIndex];
+//            array[randomIndex] = swapWith;
 //        }
 //        
 //        sorter = new QuickSort(array);
-//        long startTime = System.nanoTime();
+//        
+//        long startTime = System.currentTimeMillis();
 //        sorter.sort();
-//        long elapsedTimeInMS = (System.nanoTime() - startTime) / 1000000;
-//        System.out.println("Quick: Elapsed time in MS: " + elapsedTimeInMS);
-//        sorter = null;
+//        long stopTime = System.currentTimeMillis();
+//        
+//        System.out.println("Elapsed time with 5M values: " + (stopTime - startTime) + "ms");
+//        
+//        assertArrayEquals(expected, array);
+//    }
+//    
+//    @Test
+//    public void sortTestData() throws FileNotFoundException {
+//        
+//        File file = new File(path);
+//        LittleEndianReader reader = new LittleEndianReader(file);
+//        
+//        long[] array = reader.read();
+//        long[] expected = Arrays.copyOf(array, array.length);
+//        Arrays.sort(expected);
+//        
+//        sorter = new QuickSort(array);
+//        
+//        long startTime = System.currentTimeMillis();
+//        
+//        sorter.sort();
+//        
+//        System.out.println("Elapsed time with test data: " + (System.currentTimeMillis() - startTime) + "ms");
+//        
+//        assertArrayEquals(expected, array);
 //    }
 //}
