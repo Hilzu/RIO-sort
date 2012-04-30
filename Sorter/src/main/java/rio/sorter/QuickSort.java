@@ -12,7 +12,7 @@ public class QuickSort implements Sort {
     }
 
     public QuickSort(long[] array) {
-        this(array, 50);  // 50 seems best when tested with testSpeedWithDifferentThresholds()
+        this(array, 50);  // 50 seems to be the best threshold according to tests
     }
 
     @Override
@@ -46,6 +46,7 @@ public class QuickSort implements Sort {
                 newPivotIndex++;
             }
         }
+        
         swapElements(newPivotIndex, rightmostIndex);
 
         return newPivotIndex;
