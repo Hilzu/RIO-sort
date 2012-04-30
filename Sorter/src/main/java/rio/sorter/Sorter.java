@@ -58,8 +58,9 @@ public class Sorter {
     }
 
     private void evaluateSortType(String sortType) {
+        
         if (!sortType.equals("serial") && !sortType.equals("parallel")) {
-            System.out.println("You must declare which sort to use, serial or parallel");
+            System.out.println("You must declare which sort to use, serial or parallel.");
             System.exit(0);
         }
     }
@@ -87,8 +88,7 @@ public class Sorter {
 
         if (sortType.equals("parallel")) {
             sort = new ConcurrentQuickSort(longs);
-        }
-        if (sortType.equals("serial")) {
+        } else {
             sort = new QuickSort(longs);
         }
 
