@@ -6,6 +6,7 @@ public class QuickSort {
     private final int threshold;
 
     public QuickSort(long[] array, int threshold) {
+        
         this.array = array;
         this.threshold = threshold;
     }
@@ -19,10 +20,12 @@ public class QuickSort {
     }
 
     private void quickSort(int leftmostIndex, int rightmostIndex) {
+        
         if (rightmostIndex - leftmostIndex < threshold) {
             insertionSort(leftmostIndex, rightmostIndex);
             return;
         }
+        
         if (leftmostIndex < rightmostIndex) {
             int pivotIndex = leftmostIndex + (rightmostIndex - leftmostIndex) / 2;
             pivotIndex = partition(leftmostIndex, rightmostIndex, pivotIndex);
@@ -32,6 +35,7 @@ public class QuickSort {
     }
 
     private int partition(int leftmostIndex, int rightmostIndex, int pivotIndex) {
+        
         long pivotValue = array[pivotIndex];
         swapElements(pivotIndex, rightmostIndex);
         int newPivotIndex = leftmostIndex;
@@ -47,12 +51,14 @@ public class QuickSort {
     }
 
     private void swapElements(int index1, int index2) {
+        
         long temp = array[index1];
         array[index1] = array[index2];
         array[index2] = temp;
     }
     
     private void insertionSort(int from, int to) {
+        
         for (int i = from; i <= to; i++) {
             long value = array[i];
             int j = i - 1;

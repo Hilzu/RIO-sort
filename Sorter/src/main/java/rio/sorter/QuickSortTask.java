@@ -11,6 +11,7 @@ public class QuickSortTask implements Runnable {
     private final int maxDepth;
 
     public QuickSortTask(long[] array, int leftmostIndex, int rightmostIndex, int currentDepth, int maxDepth) {
+        
         this.array = array;
         this.leftmostIndex = leftmostIndex;
         this.rightmostIndex = rightmostIndex;
@@ -19,8 +20,10 @@ public class QuickSortTask implements Runnable {
     }
 
     private int partition(int leftmostIndex, int rightmostIndex, int pivotIndex) {
+        
         long pivotValue = array[pivotIndex];
         swapElements(pivotIndex, rightmostIndex);
+        
         int newPivotIndex = leftmostIndex;
         for (int i = leftmostIndex; i < rightmostIndex; i++) {
             if (array[i] < pivotValue) {
@@ -28,12 +31,14 @@ public class QuickSortTask implements Runnable {
                 newPivotIndex++;
             }
         }
+        
         swapElements(newPivotIndex, rightmostIndex);
 
         return newPivotIndex;
     }
 
     private void swapElements(int index1, int index2) {
+        
         long temp = array[index1];
         array[index1] = array[index2];
         array[index2] = temp;
@@ -41,11 +46,12 @@ public class QuickSortTask implements Runnable {
 
     @Override
     public void run() {
+        
         if (currentDepth > maxDepth) {
             Arrays.sort(array, leftmostIndex, rightmostIndex + 1);
-            //insertionSort(leftmostIndex, rightmostIndex);
             return;
         }
+        
         if (leftmostIndex < rightmostIndex) {
             
             int center = leftmostIndex + (rightmostIndex - leftmostIndex) / 2;
