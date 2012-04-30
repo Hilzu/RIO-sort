@@ -1,6 +1,6 @@
 package rio.sorter;
 
-public class ConcurrentQuickSort {
+public class ConcurrentQuickSort implements Sort {
 
     private final long[] array;
 
@@ -8,6 +8,7 @@ public class ConcurrentQuickSort {
         this.array = array;
     }
 
+    @Override
     public void sort() {
         
         final int maxDepth = (int) (Math.sqrt(Runtime.getRuntime().availableProcessors()));

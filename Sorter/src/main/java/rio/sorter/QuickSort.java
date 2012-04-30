@@ -1,6 +1,6 @@
 package rio.sorter;
 
-public class QuickSort {
+public class QuickSort implements Sort {
 
     private final long[] array;
     private final int threshold;
@@ -15,6 +15,7 @@ public class QuickSort {
         this(array, 50);  // 50 seems best when tested with testSpeedWithDifferentThresholds()
     }
 
+    @Override
     public void sort() {
         quickSort(0, array.length - 1);
     }
