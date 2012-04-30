@@ -1,7 +1,5 @@
 package rio.sorter;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
