@@ -88,8 +88,11 @@ public class Sorter {
 
         if (sortType.equals("parallel")) {
             sort = new ConcurrentQuickSort(longs);
+            System.out.println("Using parallel sort.");
+            System.out.println("Optimizing for " + Runtime.getRuntime().availableProcessors() + " logical processors.");
         } else {
             sort = new QuickSort(longs);
+            System.out.println("Using serial sort.");
         }
 
         System.out.println("Sorting longs...");
