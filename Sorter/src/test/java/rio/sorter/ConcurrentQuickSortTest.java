@@ -11,7 +11,7 @@ import org.junit.Test;
 public class ConcurrentQuickSortTest {
 
     private String path = "/home/fs/kerola/rio_testdata/uint64-keys.bin";
-    private ConcurrentQuickSort sorter;
+    private Sort sorter;
 
     @Test
         public void sortEmptyArray() {
