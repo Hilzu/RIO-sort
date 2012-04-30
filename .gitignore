@@ -4,7 +4,7 @@
 # Project
 uint64-keys.bin
 target
-results.txt
+results*.txt
 
 # vim
 *.swp
